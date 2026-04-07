@@ -143,6 +143,7 @@ const Potato = require("./models/Potato");
 dotenv.config();
 
 const app = express();
+app.set("trust proxy", 1);
 
 
 // ✅ CORS (production + local)
