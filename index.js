@@ -167,7 +167,6 @@ const pinLimiter = rateLimit({
 
 // Apply limiter to sensitive routes
 app.use("/api/potato/access", pinLimiter);
-app.use("/api/potato/update", pinLimiter);
 app.use("/api/potato/admin/create", pinLimiter);
 
 
