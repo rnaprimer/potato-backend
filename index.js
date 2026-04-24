@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { nanoid } = require("nanoid");
 const bcrypt = require("bcrypt");
 const rateLimit = require("express-rate-limit");
 const Potato = require("./models/Potato");
@@ -17,6 +16,7 @@ app.set("trust proxy", 1);
 // ✅ CORS (production + local)
 app.use(cors({
   origin: [
+    "http://localhost:3000",
     "http://localhost:5173",
     "https://potato-frontend-eight.vercel.app"
   ],
@@ -112,6 +112,8 @@ app.post("/api/potato/admin/create", async (req, res) => {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
+    const { nanoid } = await import("nanoid");
+    
     const id = nanoid(8);
     const rawPin = nanoid(6);
     const pinId = nanoid(4);
